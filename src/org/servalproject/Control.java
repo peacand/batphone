@@ -361,6 +361,16 @@ public class Control extends Service {
 				int local_session = ServalDMonitor.parseIntHex(args.next());
 				app.callHandler.remoteHangUp(local_session);
 
+                        } else if (cmd.equalsIgnoreCase("LOOKUP")) {
+                               String sid = args.next();
+                               String port = args.next();
+                               String did =  args.next();
+                               app.servaldMonitor.sendMessage("lookup match" 
+                                                                  + " " + sid 
+                                                                  + " " + port 
+                                                                  + " " + did 
+                                                                  + " " + "External_GSM" );
+                               Log.v("DEBUG", "LOOKUP RECEIVED : " + sid + ":" + port + ":" + did);
 			} else if (cmd.equalsIgnoreCase("CALLSTATUS")) {
 				if (app.callHandler == null)
 					return ret;
